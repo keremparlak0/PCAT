@@ -1,12 +1,25 @@
 {
   "name": "pcat",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "PCAT Photo APP",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keremparlak0/PCAT.git"
+  },
+  "keywords": [
+    "photo"
+  ],
   "author": "Kerem Parlak",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keremparlak0/PCAT/issues"
+  },
+  "homepage": "https://github.com/keremparlak0/PCAT#readme",
+  "devDependencies": {
+    "prettier": "2.8.7"
+  }
 }
