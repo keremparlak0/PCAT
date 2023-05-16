@@ -1,5 +1,6 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
+const methodOverride = require('method-override'); //Post requesti put request gibi simüle edecek paket
 const ejs = require('ejs');
 const path = require('path');
 const fs = require('fs');
@@ -22,6 +23,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); //url'deki datayı okumamızı sağlıyor
 app.use(express.json()); //url'deki datayı json formatına dönüştürüyor
 app.use(fileUpload());
+app.use(methodOverride('_method'));
 
 //routes
 app.get('/', async (req, res) => {
@@ -63,6 +65,22 @@ app.get('/photos/:id', async (req, res) => {
   res.render('photo', {
     photo: photo,
   });
+});
+
+app.get('/photos/edit/:id', async (req, res) => {
+  const photo = await Photo.findOne({_id: req.params.id});
+  res.render('edit', {
+    photo: photo
+  });
+});
+
+app.put('/photos/:id', async (req, res) => {
+  const photo = await Photo.findOne({_id: req.params.id});
+  photo.title = req.body.title;
+  photo.description = req.body.description;
+  photo.save();
+
+  res.redirect(`/photos/${req.params.id}`)
 });
 
 const PORT = 3000;
